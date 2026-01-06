@@ -9,7 +9,11 @@ from dotenv import load_dotenv
 from pydantic import BaseModel
 load_dotenv()
 
-app = FastAPI()
+app = FastAPI(
+    title="AI Travel Planner API",
+    description="An intelligent travel planning agent powered by LangGraph",
+    version="1.0.0"
+)
 
 app.add_middleware(
     CORSMiddleware,
@@ -18,8 +22,24 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 class QueryRequest(BaseModel):
     question: str
+
+@app.get("/health")
+async def health_check():
+    """Health check endpoint for monitoring"""
+    return {"status": "healthy", "timestamp": datetime.datetime.now().isoformat()}
+
+@app.get("/")
+async def root():
+    """Root endpoint with API information"""
+    return {
+        "name": "AI Travel Planner API",
+        "version": "1.0.0",
+        "docs": "/docs",
+        "health": "/health"
+    }
 
 @app.post("/query")
 async def query_travel_agent(query:QueryRequest):

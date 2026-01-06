@@ -1,0 +1,36 @@
+services:
+  # FastAPI Backend Service
+  - type: web
+    name: ai-travel-planner-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GPLACES_API_KEY
+        sync: false
+      - key: TAVILY_API_KEY
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+    healthCheckPath: /health
+
+  # Streamlit Frontend Service
+  - type: web
+    name: ai-travel-planner-ui
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: BACKEND_URL
+        fromService:
+          name: ai-travel-planner-api
+          type: web
+          property: host
