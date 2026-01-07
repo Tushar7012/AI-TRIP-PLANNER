@@ -4,7 +4,7 @@ llm:
     model_name: "gpt-4o-mini"
   groq:
     provider: "groq"
-    model_name: "gemma2-9b-it"
+    model_name: "llama-3.3-70b-versatile"
   gemini:
     provider: "gemini"
     model_name: "gemini-2.0-flash"
