@@ -158,8 +158,10 @@ AI-TRIP-PLANNER/
 | Variable | Required | Description |
 |----------|----------|-------------|
 | `GROQ_API_KEY` | Yes | Groq API key for LLM |
-| `GPLACES_API_KEY` | Yes | Google Places API key |
-| `TAVILY_API_KEY` | No | Tavily search API key |
+| `FOURSQUARE_API_KEY` | Yes | Foursquare API key for location data |
+| `OPENWEATHERMAP_API_KEY` | Yes | OpenWeatherMap API key for weather |
+| `EXCHANGE_RATE_API_KEY` | Yes | Exchange Rate API key for currency |
+| `TAVILY_API_KEY` | No | Tavily search API key (fallback) |
 | `OPENAI_API_KEY` | No | OpenAI API key (alternative) |
 | `BACKEND_URL` | Production | Backend API URL for frontend |
 
