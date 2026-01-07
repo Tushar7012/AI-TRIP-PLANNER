@@ -11,7 +11,7 @@ services:
         value: "3.11"
       - key: GROQ_API_KEY
         sync: false
-      - key: GPLACES_API_KEY
+      - key: FOURSQUARE_API_KEY
         sync: false
       - key: OPENWEATHERMAP_API_KEY
         sync: false
